@@ -14,6 +14,10 @@ const { bookData } = Astro.props;
 const filteredBookData = bookData.filter((book) => !(book.path.endsWith("pm") || book.path.endsWith("dm") || book.path.endsWith("kd")));
 ---
 
+   <!-- <H2 class="homeWidth sectionTitle pl-2 pb-4 border-b-amber-600 shadow-s border-b-2 "> -->
+        <!-- School name ONCE here instead -->
+        <!-- </H2>  -->
+
 <Fragment>
   {
     filteredBookData.map((book) => {
@@ -25,7 +29,7 @@ const filteredBookData = bookData.filter((book) => !(book.path.endsWith("pm") ||
        <H2 class="homeWidth sectionTitle pl-2 pb-4 border-b-amber-600 shadow-s border-b-2 ">
         {schoolName} 
         </H2> 
-<!--BhKb show above h2 only once for each school -->
+
         <section
           id={createAnchor(schoolName + " " + bookName)}
           class="homeWidth mt-4 mb-8 lg:my-11 bg-stone-50 shadow-inner pb-6 rounded-lg border-2 border-orange-200 shadow-xl"
