@@ -20,7 +20,9 @@
         padding-bottom: 0;
     }
     p.verses{
-        padding-bottom: 1.25rem;
+        padding-bottom: 1rem;
+        min-width:450px;
+        max-width:55%;
     }
     h3.pmRuleTitle{
         font-size: 2rem;
