@@ -1,15 +1,13 @@
 ---
 import { orderBookData } from "../utils";
 import { siteName, dateFirstPublished } from "../utils/meta";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/HomeLayout.astro";
 import H2 from "../components/H2.astro";
 import LinkedBookIndexList from "../components/LinkedBookIndexList.astro";
 import LinkedRuleIndexList from "../components/LinkedRuleIndexList.astro";
 import { getAllBookRuleData } from "../utils";
 import { schoolBookGroups } from "../data/content";
 import type { BookData } from "../data/types";
-
-type Data = Partial<Record<keyof typeof schoolBookGroups, BookData[]>> | null;
 
 let data: Data = {};
 
@@ -45,13 +43,15 @@ const orderedData = Object.values(data).map((schoolBookData) =>
   orderBookData(schoolBookData)
 );
 
+
 const dateFormatOptions = {
   year: "numeric",
   month: "long",
   day: "numeric",
 } as const;
----
 
+
+---
 <Layout
   title={siteName}
   prefixedDescription="the Chinese Bhikkhunī Vinayas"
@@ -59,29 +59,33 @@ const dateFormatOptions = {
   dateModified={new Date()}
   isIndexPage
 >
+
   <main>
-    <h1 class="text-5xl md:text-6xl mb-8">
+    <h1 class="homeWidth text-3xl border-b-amber-600 shadow-s border-b-2 px-4 py-8 md:text-6xl mb-8 text-amber-900">
       {siteName}
     </h1>
-
+    
+    <div id="navcards" class="homeWidth grid lg:grid-cols-2 gap-8">
     {
       orderedData.map((bookData) => {
         return (
-          <section>
-            <H2>{bookData[0].schoolName}</H2>
+          <section          
+          class="border border-stone-200 px-4 pb-2 bg-stone-50 shadow-sm rounded-lg mt-0">
+            <H2 class="border-b border-orange-600 pb-2">{bookData[0].schoolName}</H2>
             <LinkedBookIndexList bookList={bookData} />
           </section>
         );
       })
     }
-    <hr />
+    </div>
+    <div id="LinkedRoleIndexLists" class="bg-orange-50 pt-8 mt-10 shadow-inner shadow-lg border-b-2 border-amber-100 pb-10">
     {
       orderedData.map((bookData) => {
         return <LinkedRuleIndexList bookData={bookData} />;
       })
     }
-
-    <div class="mt-20">
+    </div>
+    <div class="mt-20 homeWidth mt-10 pt-10">
       <p>Translated by Vimalañāṇī Bhikkhunī</p>
       <p>
         Published: {
